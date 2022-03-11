@@ -18,12 +18,14 @@ public class Configuration {
     public String publicKey;
     public String mpConfigurationFolder;
     public String mpConfigIssuer;
+    public String algorithm;
 
     private final static String CONFIGURATION_FILE = "jwtenizr-config.json";
 
     protected Configuration() {
         this.mpConfigurationFolder = ".";
         this.mpConfigIssuer = "airhacks";
+        this.algorithm = "RS256";
     }
 
     public void save() {
@@ -71,6 +73,10 @@ public class Configuration {
 
     public static String issuer() {
         return load().mpConfigIssuer;
+    }
+    
+    public static String algorithm() {
+        return load().algorithm;
     }
 
     static void storeKeys(byte[] privateKeyAsBytes, byte[] publicKeyAsBytes) {

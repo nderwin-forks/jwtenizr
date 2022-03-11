@@ -19,9 +19,11 @@ public interface MicroProfileConfiguration {
     public static void generate(String publicKey) throws IOException {
         String location = Configuration.mpConfigurationLocation();
         String issuer = Configuration.issuer();
+        String algorithm = Configuration.algorithm();
         Properties properties = new Properties();
         properties.setProperty("mp.jwt.verify.publickey", publicKey);
         properties.setProperty("mp.jwt.verify.issuer", issuer);
+        properties.setProperty("mp.jwt.verify.publickey.algorithm", algorithm);
         Path path = Paths.get(location, MP_CONFIG_FILENAME);
         File configurationLocation = path.toFile();
         Terminal.info("Writing mpconfig to: " + MP_CONFIG_FILENAME);

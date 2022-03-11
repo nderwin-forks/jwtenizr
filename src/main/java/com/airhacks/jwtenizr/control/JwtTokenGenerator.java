@@ -1,7 +1,8 @@
 package com.airhacks.jwtenizr.control;
 
+import com.nimbusds.jose.JWSAlgorithm;
+
 import static com.nimbusds.jose.JOSEObjectType.JWT;
-import static com.nimbusds.jose.JWSAlgorithm.RS256;
 import static com.nimbusds.jwt.JWTClaimsSet.parse;
 import static net.minidev.json.parser.JSONParser.DEFAULT_PERMISSIVE_MODE;
 
@@ -42,7 +43,7 @@ public interface JwtTokenGenerator {
             jwtJson.put(Claims.exp.name(), expirationTime);
         }
 
-        JWSHeader header = new JWSHeader.Builder(RS256)
+        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.parse(Configuration.algorithm()))
                 .keyID("jwt.key").
                 type(JWT).
                 build();
